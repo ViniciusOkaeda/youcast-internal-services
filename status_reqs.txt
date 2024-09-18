@@ -1,0 +1,20 @@
+ "status": 1, "message": "Variável dependendo da requisição feita" // OBS: Status 1 refere-se sempre a sucesso total da requisição.
+ "status": 2, "message": "Token expirado, faça login novamente!" // OBS: 
+ "status": 3, "message": "Permissões de serviços não encontrados!" // OBS: 
+ "status": 4, "message": " Erro na validação de permissões, consulte nossos desenvolvedores." // OBS: 
+ "status": 5, "message": "Requisição inválida. Verifique os parâmetros e tente novamente!" // OBS: 
+ "status": 6, "message": "Não foi possível criar o usuário." // OBS: 
+ "status": 7, "message": "Motv error, favor consultar os desenvolvedores" // OBS: 
+ "status": 8, "message": "O nome de usuário deve conter no mínimo 3 caracteres." // OBS: 
+ "status": 9, "message": "A senha deve conter no mínimo 5 caracteres." // OBS: 
+ "status": 10, "message": "As senhas não coincidem" // OBS: 
+ "status": 11, "message": "O email já está sendo utilizado." // OBS: 
+ "status": 12, "message": "O nome de usuário já está sendo utilizado." // OBS: 
+ "status": 13, "message": "Usuário e/ou senha inválida" // OBS: 
+ "status": 14, "message": "Validação de senha com erro" // OBS: 
+ "status": 15, "message": "Erro ao obter dados do usuário, consulte nossos desenvolvedores" // OBS: 
+ "status": 16, "message": "Token inválido" // OBS: 
+ "status": 17, "message": "" // OBS: 
+ "status": 18, "message": "" // OBS: 
+ "status": 19, "message": "" // OBS: 
+ "status": 20, "message": "" // OBS: 
