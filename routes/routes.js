@@ -38,6 +38,7 @@ router.post('/api/dealer/getDealersData', dealerController.getDealersData)
 
 //referente a produtos
 router.post('/api/product/getProductsData', productController.getProductsData)
+router.post('/api/product/getWhitelistProductsData', productController.getWhitelistProductsData)
 
 // referente ao lineup
 router.post('/api/lineup/getLineupData', lineupController.getLineupData)

@@ -11,6 +11,14 @@ async function getProductData(res) {
     //console.log("meu dealerData", dealerData)
 }
 
+async function getWhitelistProductData(res) {
+    const url = "api/report/reportSelection";
+    const data = {"reports_id": 425}
+    const productData = await callMotv.callToMotvSMS(url, data, res);
+
+    return productData
+}
+
 exports.getProductsData = async (req, res, next) => {
     const bodyReq = req.body.data[0];
     const checkStringTotalMedia = "Report Total Media"
@@ -89,6 +97,30 @@ exports.getProductsData = async (req, res, next) => {
         const productData = await newDealersList(productFilterLogin);
 
         res.send({ "status": 1, productData })
+
+    } else if (bodyReq.service_name.includes("Report Now+") && bodyReq.view_right === 1) {
+
+    } else {
+        res.send({ "status": 3, message: "Permissões de serviços não encontrados!" })
+    }
+
+
+
+}
+
+
+exports.getWhitelistProductsData = async (req, res, next) => {
+    const bodyReq = req.body.data[0];
+    const checkStringTotalMedia = "Report Total Media"
+    const checkStringNow = "Report Now+"
+    const checkString = "Lineup"
+
+
+    if (bodyReq.service_name.includes(checkString) && bodyReq.view_right === 1) {
+
+        const productsInfo = await getWhitelistProductData(res);
+
+        res.send({ "status": 1, productsInfo })
 
     } else if (bodyReq.service_name.includes("Report Now+") && bodyReq.view_right === 1) {
 

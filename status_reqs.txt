@@ -14,7 +14,7 @@
  "status": 14, "message": "Validação de senha com erro" // OBS: 
  "status": 15, "message": "Erro ao obter dados do usuário, consulte nossos desenvolvedores" // OBS: 
  "status": 16, "message": "Token inválido" // OBS: 
- "status": 17, "message": "" // OBS: 
+ "status": 17, "message": "O usuário está inativo!" // OBS: 
  "status": 18, "message": "" // OBS: 
  "status": 19, "message": "" // OBS: 
  "status": 20, "message": "" // OBS: 

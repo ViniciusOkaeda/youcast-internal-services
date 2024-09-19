@@ -26,6 +26,7 @@ async function filterDataNow() {
 
 
 exports.getDealersData = async (req, res, next) => {
+    console.log("oq ue tem", req.body.data)
     const bodyReq = req.body.data[0];
     const checkStringLineup = "Lineup"
     const checkStringTotalMedia = "Report Total Media"
