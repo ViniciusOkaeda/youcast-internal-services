@@ -11,6 +11,8 @@ const dealerController = require('../controllers/dealer.js')
 const lineupController = require('../controllers/lineup.js')
 const vendorController = require('../controllers/vendor.js')
 const productController = require('../controllers/products.js')
+const channelController = require('../controllers/channels.js')
+const vodController = require('../controllers/vods.js')
 
 
 router.get('/*', (req, res) => {
@@ -43,6 +45,11 @@ router.post('/api/product/getWhitelistProductsData', productController.getWhitel
 // referente ao lineup
 router.post('/api/lineup/getLineupData', lineupController.getLineupData)
 
+// referente aos channels
+router.post('/api/channel/getChannelsData', channelController.getChannelsData)
+
+// referente aos vods
+router.post('/api/vod/getVodsData', vodController.getVodsData)
 
 
 //referente aos dados de vendors
