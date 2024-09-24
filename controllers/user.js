@@ -147,36 +147,60 @@ async function getUserInfo(userDetails, res) {
 }
 
 exports.registerUser = async (req, res) => {
-    const { username, password, confirmPassword, name, lastname, email, type_user_id, active } = req.body
+    const token = req.cookies.token;
+    if(token === undefined){
+        res.send({ "status": 16, "message": "Token inválido" })
 
-    if (!name || !email || !username || !password || !lastname || !type_user_id || !active) {
-        return res.send({
-            status: 5,
-            message: "Requisição inválida. Verifique os parâmetros e tente novamente!"
-        });
-    } else if (username.length < 3) {
-        res.send({ "status": 8, "message": "O nome de usuário deve conter no mínimo 3 caracteres." });
-    } else if (password.length < 5) {
-        res.send({ "status": 9, "message": "A senha deve conter no mínimo 5 caracteres." });
-    } else if (password !== confirmPassword) {
-        res.send({ "status": 10, "message": "As senhas não coincidem" });
     } else {
-        checkAlreadyExists(res, name, email, username, password, lastname, type_user_id, active)
+        const { username, password, confirmPassword, name, lastname, email, type_user_id, active } = req.body
+    
+        if (!name || !email || !username || !password || !lastname || !type_user_id || !active) {
+            return res.send({
+                status: 5,
+                message: "Requisição inválida. Verifique os parâmetros e tente novamente!"
+            });
+        } else if (username.length < 3) {
+            res.send({ "status": 8, "message": "O nome de usuário deve conter no mínimo 3 caracteres." });
+        } else if (password.length < 5) {
+            res.send({ "status": 9, "message": "A senha deve conter no mínimo 5 caracteres." });
+        } else if (password !== confirmPassword) {
+            res.send({ "status": 10, "message": "As senhas não coincidem" });
+        } else {
+            checkAlreadyExists(res, name, email, username, password, lastname, type_user_id, active)
+        }
+        
     }
+
+
 }
 
 exports.getUserData = async (req, res) => {
-    const userDetails = await getTokenInfo(req.cookies.token, res);
-    const userInfo = await getUserInfo(userDetails, res)
-    const userActiveServices = await getUserServicesInfo(userInfo.map(e => e.type_user_id)[0], res)
+    const token = req.cookies.token;
+    if(token === undefined){
+        res.send({ "status": 16, "message": "Token inválido" })
 
-    const data = [{
-        userInfo: userInfo,
-        availableServices: userActiveServices
-    }]
-    res.send({ "status": 1, data })
+    } else {
+        const userDetails = await getTokenInfo(req.cookies.token, res);
+        const userInfo = await getUserInfo(userDetails, res)
+        const userActiveServices = await getUserServicesInfo(userInfo.map(e => e.type_user_id)[0], res)
+    
+        const data = [{
+            userInfo: userInfo,
+            availableServices: userActiveServices
+        }]
+        res.send({ "status": 1, data })
+        
+    }
 
+}
 
+exports.getUsersData = async (req, res) => {
+    const token = req.cookies.token;
+    if(token === undefined) {
+        res.send({ "status": 16, "message": "Token inválido" })
+    } else {
+
+    }
 }
 
 

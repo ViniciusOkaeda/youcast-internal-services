@@ -97,9 +97,12 @@ exports.validateToken = async (req, res, next) => {
 
 exports.logout = async (req, res, next) => {
     const token = req.cookies.token;
+    if(token === undefined){
+        res.send({ "status": 16, "message": "Token inválido" })
 
-    res.clearCookie('token')
-    res.clearCookie('username')
-    res.send({ "status": 1, "message": "Sessão finalizada com sucesso!" })
-    //const name = req.cookies.username
+    } else {
+        res.clearCookie('token')
+        res.clearCookie('username')
+        res.send({ "status": 1, "message": "Sessão finalizada com sucesso!" })
+    }
 }
