@@ -47,7 +47,7 @@ async function usernameValidation(res, username) {
 async function registerNewUser(res, name, email, username, senha, lastname, type_user_id, active) {
     const password = await bcrypt.hash(senha.toString(), 10)
 
-    const query = 'INSERT INTO user (name, email, username, password, lastname, type_user_id) VALUES (?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO user (name, email, username, password, lastname, type_user_id, active) VALUES (?, ?, ?, ?, ?, ?, ?)';
     const values = [name, email, username, password, lastname, type_user_id, active];
 
 
@@ -148,11 +148,12 @@ async function getUserInfo(userDetails, res) {
 
 exports.registerUser = async (req, res) => {
     const token = req.cookies.token;
+    console.log("meu req.", req.body.data.username)
     if(token === undefined){
         res.send({ "status": 16, "message": "Token inválido" })
 
     } else {
-        const { username, password, confirmPassword, name, lastname, email, type_user_id, active } = req.body
+        const { username, password, confirmPassword, name, lastname, email, type_user_id, active } = req.body.data
     
         if (!name || !email || !username || !password || !lastname || !type_user_id || !active) {
             return res.send({
@@ -199,6 +200,31 @@ exports.getUsersData = async (req, res) => {
     if(token === undefined) {
         res.send({ "status": 16, "message": "Token inválido" })
     } else {
+        try {
+            const [rows, fields] = await dbServ.client.query(
+                `SELECT 
+                us.user_id,
+                us.username,
+                us.name,
+                us.lastname,
+                us.email,
+                us.type_user_id,
+                us.active,
+                us.last_acess,
+                tu.name as "type_user"
+                FROM user us
+                INNER JOIN type_user tu ON us.type_user_id = tu.type_user_id`
+            );
+    
+            if (rows.length > 0) {
+                const usersData = await rows
+                res.send({ "status": 1, usersData})
+            } else {
+                res.send({ "status": 15, "message": "Erro ao obter dados do usuário, consulte nossos desenvolvedores." })
+            }
+        } catch (error) {
+            res.send(error)
+        }
 
     }
 }
