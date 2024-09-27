@@ -1,7 +1,7 @@
 const dbServ = require('../server/server')
 
 async function checkAlreadyExists(res, name) {
-    const returnValidationName = await nameValidation(res, email);
+    const returnValidationName = await nameValidation(res, name);
 
     if (returnValidationName === true) {
         registerNewPermission(res, name);

@@ -25,7 +25,7 @@ async function nameValidation(res, name) {
 
 async function registerNewService(res, name, description, middleware_sms, username_sms, secret_sms, middleware_mw, username_mw, secret_mw, aux_sms, aux_mw) {
 
-    const query = 'INSERT INTO user (name, description, middleware_sms, username_sms, secret_sms, middleware_mw, username_mw, secret_mw, aux_sms, aux_mw) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO type_service (name, description, middleware_sms, username_sms, secret_sms, middleware_mw, username_mw, secret_mw, aux_sms, aux_mw) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     const values = [name, description, middleware_sms, username_sms, secret_sms, middleware_mw, username_mw, secret_mw, aux_sms, aux_mw];
 
 
@@ -43,6 +43,23 @@ exports.getServicesData = async (req, res) => {
     if(token === undefined) {
         res.send({ "status": 16, "message": "Token inválido" })
     } else {
+        checkStringPermission = "Service"
+        const bodyReq = req.body.data;
+
+        if (bodyReq.service_name.includes(checkStringPermission) && bodyReq.view_right === 1) {
+            const query = 'SELECT * FROM type_service';
+
+            const [rows, fields] = await dbServ.client.query(query);
+
+            const serviceData = await rows;
+
+            res.send({ "status": 1, serviceData})
+
+        } else {
+            res.send({ "status": 3, message: "Permissões não encontrados!" })
+        }
+
+
 
     }
 }
