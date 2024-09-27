@@ -50,9 +50,11 @@ router.post('/api/vod/getVodsData', vodController.getVodsData)
 
 // referente aos services
 router.post('/api/service/getServicesData', serviceController.getServicesData)
+router.post('/api/service/register')
 
 // referente aos permissions
 router.post('/api/permission/getPermissionsData', permissionController.getPermissionsData)
+router.post('/api/permission/register')
 
 // referente ao smtps
 router.post('/api/smtp/getSmtpsData', smtpController.getSmtpsData)

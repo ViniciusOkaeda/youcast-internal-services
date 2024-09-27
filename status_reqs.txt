@@ -15,6 +15,7 @@
  "status": 15, "message": "Erro ao obter dados do usuário, consulte nossos desenvolvedores" // OBS: 
  "status": 16, "message": "Token inválido" // OBS: 
  "status": 17, "message": "O usuário está inativo!" // OBS: 
- "status": 18, "message": "" // OBS: 
- "status": 19, "message": "" // OBS: 
- "status": 20, "message": "" // OBS: 
+ "status": 18, "message": "Esta permissão já existe!" // OBS: 
+ "status": 19, "message": "Não foi possível criar a permissão." // OBS: 
+ "status": 20, "message": "Este serviço já existe!" // OBS: 
+ "status": 21, "message": "Não foi possível criar o serviço." // OBS: 
