@@ -4,16 +4,82 @@ const callMotv = require('../utils/motv')
 async function getDealerData(res) {
     const url = "api/report/reportSelection";
     const data = { "reports_id": 424 }
-    const dealerData = await callMotv.callToMotvSMS(url, data, res);
+    const dealerDataSms = await callMotv.callToMotvSMS(url, data, res);
+
+    const changeDealerIdToName = (dealer_id) => {
+
+        switch (dealer_id) {
+            case 1:
+                return "";
+            case 5:
+                return "Vendor";
+            case 15:
+                return "Brand Yplay";
+            case 23:
+                return "Brand WSP";
+            case 25:
+                return "Brand Yplay - Cariap";
+            case 41:
+                return "Brand Yplay - IDCORP";
+            case 134:
+                return "Brand Olla";
+            case 148:
+                return "Brand Yplay - Alloha";
+            case 153:
+                return "Brand Yplay CO";
+            case 166:
+                return "Brand ClickIP";
+            case 177:
+                return "Brand Yplay CO - Fibercomm";
+            case 178:
+                return "Brand SouPlay";
+            case 181:
+                return "Brand Nortetel";
+            case 184:
+                return "Brand Yplay - Alloha";
+            case 186:
+                return "Brand Yplay - Alloha";
+            case 190:
+                return "Brand Yplay - Alloha";
+            case 219:
+                return "Brand Yplay - InterfaceNet";
+            case 263:
+                return "Brand Newbrasil";
+            case 278:
+                return "Brand Uni";
+            case 299:
+                return "Brand Yplay - Kase";
+            default:
+                return "N/A";
+        }
+
+    }
+
+    const dealerData = dealerDataSms.rows.map((item, idx) => {
+        const rows = {
+            dealers_id: item.dealers_id,
+            dealers_name: item.dealers_name,
+            dealers_active: item.dealers_active,
+            parent_dealers_id: item.parent_dealers_id,
+            dealers_category: changeDealerIdToName(item.parent_dealers_id),
+            dealers_company_name: item.dealers_company_name,
+            dealers_fantasy_name: item.dealers_fantasy_name,
+            dealers_cnpj: item.dealers_cnpj,
+            dealers_city: item.dealers_city,
+            dealers_state: item.dealers_state
+    
+        }
+
+        return rows
+
+
+    })
 
     return dealerData;
-
-    //console.log("meu dealerData", dealerData)
 }
 
 async function filterDataTotalMedia(dealerInfo) {
-    //console.log("o dealerInfo", dealerInfo.map(e => e))
-    const filterInfo = dealerInfo.rows
+    const filterInfo = dealerInfo
         .filter(item => 
             item.parent_dealers_id === 153 || item.dealers_name === 'ZUMA' 
         )
