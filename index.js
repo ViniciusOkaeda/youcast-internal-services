@@ -8,7 +8,7 @@ const port = process.env.PORT;
 
 app.use(cors({
     credentials: true,
-    origin: ["http://localhost:3000", "http://10.10.150.246:3000"],
+    origin: ["http://localhost:3000", "http://10.10.150.246:3000", "http://192.168.10.221:443", "https://hub.youcast.tv.br/"],
     methods: ["POST", "GET"],
 }));
 app.use(cookieParser())

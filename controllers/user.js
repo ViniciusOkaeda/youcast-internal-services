@@ -149,10 +149,14 @@ async function getUserInfo(userDetails, res) {
 exports.registerUser = async (req, res) => {
     const token = req.cookies.token;
     console.log("meu req.", req.body.data.username)
+    /*
+    
     if(token === undefined){
         res.send({ "status": 16, "message": "Token inválido" })
-
-    } else {
+    }
+    else {    }
+    
+    */
         const { username, password, confirmPassword, name, lastname, email, type_user_id, active } = req.body.data
     
         if (!name || !email || !username || !password || !lastname || !type_user_id || !active) {
@@ -170,7 +174,7 @@ exports.registerUser = async (req, res) => {
             checkAlreadyExists(res, name, email, username, password, lastname, type_user_id, active)
         }
         
-    }
+
 
 
 }
