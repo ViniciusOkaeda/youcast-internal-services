@@ -55,6 +55,7 @@ router.post('/api/service/register', serviceController.registerService)
 // referente aos permissions
 router.post('/api/permission/getPermissionsData', permissionController.getPermissionsData)
 router.post('/api/permission/register', permissionController.registerPermission)
+router.post('/api/permission/registerServicePermission', permissionController.registerServicePermission)
 
 // referente ao smtps
 router.post('/api/smtp/getSmtpsData', smtpController.getSmtpsData)

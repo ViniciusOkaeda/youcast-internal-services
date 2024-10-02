@@ -19,3 +19,5 @@
  "status": 19, "message": "Não foi possível criar a permissão." // OBS: 
  "status": 20, "message": "Este serviço já existe!" // OBS: 
  "status": 21, "message": "Não foi possível criar o serviço." // OBS: 
+ "status": 22, "message": "Este serviço já existe nesta permissão." // OBS: 
+ "status": 22, "message": "Não foi possível adicionar as permições de serviço para esta permissão." // OBS: 
