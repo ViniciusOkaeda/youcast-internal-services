@@ -23,6 +23,8 @@ router.get('/*', (req, res) => {
 router.post('/api/user/register', userController.registerUser)
 router.post('/api/user/getUserData', userController.getUserData)
 router.post('/api/user/getUsersData', userController.getUsersData)
+router.post('/api/user/getUserDataById', userController.getUserDataById)
+
 {/*
     router.post('/api/user/delete', userController.registerUser)
     router.post('/api/user/update', userController.registerUser)
@@ -56,6 +58,7 @@ router.post('/api/service/register', serviceController.registerService)
 router.post('/api/permission/getPermissionsData', permissionController.getPermissionsData)
 router.post('/api/permission/register', permissionController.registerPermission)
 router.post('/api/permission/registerServicePermission', permissionController.registerServicePermission)
+
 
 // referente ao smtps
 router.post('/api/smtp/getSmtpsData', smtpController.getSmtpsData)

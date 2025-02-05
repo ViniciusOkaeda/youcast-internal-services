@@ -121,6 +121,7 @@ async function getUserServicesInfo(userDetails, res) {
 }
 
 async function getUserInfo(userDetails, res) {
+    //console.log("meu userDetails", userDetails)
     try {
         const [rows, fields] = await dbServ.client.query(
             `SELECT 
@@ -130,10 +131,12 @@ async function getUserInfo(userDetails, res) {
             us.lastname,
             us.email,
             us.type_user_id,
+            us.active,
+            us.last_acess,
             tu.name as "type_user"
             FROM user us
             INNER JOIN type_user tu ON us.type_user_id = tu.type_user_id
-            WHERE us.username = ? AND us.user_id = ?`, [userDetails.name, userDetails.user_id]
+            WHERE us.user_id = ?`, [userDetails.user_id]
         );
 
         if (rows.length > 0) {
@@ -185,8 +188,10 @@ exports.getUserData = async (req, res) => {
         res.send({ "status": 16, "message": "Token inválido" })
 
     } else {
+        console.log("meu body", req.body)
         const userDetails = await getTokenInfo(req.cookies.token, res);
         const userInfo = await getUserInfo(userDetails, res)
+        console.log("meu user info é", userInfo)
         const userActiveServices = await getUserServicesInfo(userInfo.map(e => e.type_user_id)[0], res)
     
         const data = [{
@@ -230,6 +235,25 @@ exports.getUsersData = async (req, res) => {
             res.send(error)
         }
 
+    }
+}
+
+exports.getUserDataById = async (req, res) => {
+    const token = req.cookies.token;
+    if(token === undefined){
+        res.send({ "status": 16, "message": "Token inválido" })
+
+    } else {
+        const userDetails = await getTokenInfo(req.cookies.token, res);
+        const userInfo = await getUserInfo(req.body, res)
+        const userActiveServices = await getUserServicesInfo(userInfo.map(e => e.type_user_id)[0], res)
+    
+        const data = [{
+            userInfo: userInfo,
+            availableServices: userActiveServices
+        }]
+        res.send({ "status": 1, data })
+        
     }
 }
 
