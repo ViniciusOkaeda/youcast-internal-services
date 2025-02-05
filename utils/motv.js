@@ -46,6 +46,7 @@ async function callToMotvSMS(url, data, res) {
 
     const resp = await api.post(url, {data})
     .then(function (response) {
+      console.log("retorno", response.data)
         return response.data.response
     }).catch((error) => {
         res.send({ "status": 7, "message": "Motv error, consulte nossos desenvolvedores." })
