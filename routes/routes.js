@@ -13,6 +13,7 @@ const vodController = require('../controllers/vods.js')
 const serviceController = require('../controllers/service.js')
 const permissionController = require('../controllers/permission.js')
 const smtpController = require('../controllers/smtp.js')
+const historyController = require('../controllers/history.js')
 
 
 router.get('/*', (req, res) => {
@@ -66,6 +67,9 @@ router.post('/api/smtp/getSmtpsData', smtpController.getSmtpsData)
 
 //referente aos dados de vendors
 
+
+//referente ao histórico
+router.post('/api/history/register', historyController.registerHistoryData)
 
 
 

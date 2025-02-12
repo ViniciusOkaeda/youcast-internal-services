@@ -54,7 +54,7 @@ async function getDealerData(res) {
         }
 
     }
-
+    
     const dealerData = dealerDataSms.rows.map((item, idx) => {
         const rows = {
             dealers_id: item.dealers_id,
