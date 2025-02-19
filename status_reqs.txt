@@ -20,4 +20,9 @@
  "status": 20, "message": "Este serviço já existe!" // OBS: 
  "status": 21, "message": "Não foi possível criar o serviço." // OBS: 
  "status": 22, "message": "Este serviço já existe nesta permissão." // OBS: 
- "status": 22, "message": "Não foi possível adicionar as permições de serviço para esta permissão." // OBS: 
+ "status": 23, "message": "Não foi possível adicionar as permições de serviço para esta permissão." // OBS: 
+ "status": 24, "message": "Este histórico já existe!" // OBS:
+ "status": 25, "message": "Não foi possível criar o histórico." // OBS:
+ "status": 26, "message": "Você não tem permissão de visualizar o histórico."
+ "status": 27, "message": "Você não pode utilizar este serviço."
+

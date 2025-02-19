@@ -191,7 +191,7 @@ exports.getUserData = async (req, res) => {
         console.log("meu body", req.body)
         const userDetails = await getTokenInfo(req.cookies.token, res);
         const userInfo = await getUserInfo(userDetails, res)
-        console.log("meu user info é", userInfo)
+        //console.log("meu user info é", userInfo)
         const userActiveServices = await getUserServicesInfo(userInfo.map(e => e.type_user_id)[0], res)
     
         const data = [{

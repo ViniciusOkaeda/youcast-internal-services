@@ -69,7 +69,8 @@ router.post('/api/smtp/getSmtpsData', smtpController.getSmtpsData)
 
 
 //referente ao histórico
-router.post('/api/history/register', historyController.registerHistoryData)
+router.post('/api/history/registerHistoryType', historyController.registerHistoryType)
+router.post('/api/history/getHistoryTypes', historyController.getHistoryTypes)
 
 
 

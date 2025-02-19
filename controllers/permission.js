@@ -33,7 +33,7 @@ async function registerNewServicePermission(res, type_user_id, type_service_id, 
         .then((result) => {
             res.send({ "status": 1, "message": "As permissões de serviço foram criadas com sucesso." });
         }).catch((error) => {
-            res.send({ "status": 22, "message": "Não foi possível adicionar as permições de serviço para esta permissão.", "error": error });
+            res.send({ "status": 23, "message": "Não foi possível adicionar as permições de serviço para esta permissão.", "error": error });
         })
 
 }
